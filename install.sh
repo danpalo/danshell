@@ -7,7 +7,14 @@ BASHRC_FILE=~/.bashrc
 STARSHIP_INIT_LINE_ZSH='eval "$(starship init zsh)"'
 STARSHIP_INIT_LINE_BASH='eval "$(starship init bash)"'
 
-curl -sS https://starship.rs/install.sh | sh -s -- -y
+if [ -w "/usr/local/bin" ]; then
+	INSTALL_BIN=/usr/local/bin
+else
+	mkdir -p ~/bin
+	INSTALL_BIN=~/bin
+fi
+
+curl -sS https://starship.rs/install.sh | sh -s -- -y -b $INSTALL_BIN
 
 mkdir -p $CONFIG_DIR
 
