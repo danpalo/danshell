@@ -9,9 +9,13 @@ STARSHIP_INIT_LINE_BASH='eval "$(starship init bash)"'
 
 if [ -w "/usr/local/bin" ]; then
 	INSTALL_BIN=/usr/local/bin
+	STARSHIP_INIT_LINE_ZSH='eval "$(starship init zsh)"'
+	STARSHIP_INIT_LINE_BASH='eval "$(starship init bash)"'
 else
 	mkdir -p ~/bin
 	INSTALL_BIN=~/bin
+	STARSHIP_INIT_LINE_ZSH='eval "$(~/bin/starship init zsh)"'
+	STARSHIP_INIT_LINE_BASH='eval "$(~/bin/starship init bash)"'
 fi
 
 curl -sS https://starship.rs/install.sh | sh -s -- -y -b $INSTALL_BIN
@@ -22,13 +26,13 @@ if [ ! -f $CONFIG_FILE ]; then
 	starship preset tokyo-night -o ~/.config/starship.toml
 fi
 
-if [ "$SHELL" = "/bin/zsh" ] || [ "$SHELL" = "/usr/bin/zsh" ]; then
+if [ $(basename "$SHELL") = "zsh" ]; then
     if ! grep -qF "$STARSHIP_INIT_LINE_ZSH" $ZSHRC_FILE; then
         echo "\n$STARSHIP_INIT_LINE_ZSH" >> $ZSHRC_FILE
     fi
 fi
 
-if [ "$SHELL" = "/bin/bash" ] || [ "$SHELL" = "/usr/bin/bash" ]; then
+if [ $(basename "$SHELL") = "bash"]; then
     if ! grep -qF "$STARSHIP_INIT_LINE_BASH" $BASHRC_FILE; then
         echo "\n$STARSHIP_INIT_LINE_BASH" >> $BASHRC_FILE
     fi
