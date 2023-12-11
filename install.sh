@@ -32,7 +32,7 @@ if [ $(basename "$SHELL") = "zsh" ]; then
     fi
 fi
 
-if [ $(basename "$SHELL") = "bash"]; then
+if [ $(basename "$SHELL") = "bash" ]; then
     if ! grep -qF "$STARSHIP_INIT_LINE_BASH" $BASHRC_FILE; then
         echo "\n$STARSHIP_INIT_LINE_BASH" >> $BASHRC_FILE
     fi
