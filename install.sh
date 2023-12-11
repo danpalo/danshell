@@ -21,10 +21,7 @@ fi
 curl -sS https://starship.rs/install.sh | sh -s -- -y -b $INSTALL_BIN
 
 mkdir -p $CONFIG_DIR
-
-if [ ! -f $CONFIG_FILE ]; then
-	starship preset tokyo-night -o ~/.config/starship.toml
-fi
+curl -sS https://raw.githubusercontent.com/danpalo/danshell/main/starship.toml -o $CONFIG_DIR/starship.toml
 
 if [ $(basename "$SHELL") = "zsh" ]; then
     if ! grep -qF "$STARSHIP_INIT_LINE_ZSH" $ZSHRC_FILE; then
