@@ -18,7 +18,7 @@ else
 	STARSHIP_INIT_LINE_BASH='eval "$(~/bin/starship init bash)"'
 fi
 
-curl -sS https://starship.rs/install.sh | sh -s -- -y -b $INSTALL_BIN
+curl -sS https://raw.githubusercontent.com/danpalo/danshell/main/starship.install.sh | sh -s -- -y -b $INSTALL_BIN
 
 mkdir -p $CONFIG_DIR
 curl -sS https://raw.githubusercontent.com/danpalo/danshell/main/starship.toml -o $CONFIG_DIR/starship.toml
